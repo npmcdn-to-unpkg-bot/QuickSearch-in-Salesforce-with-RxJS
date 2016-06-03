@@ -1,0 +1,40 @@
+<apex:page docType="html-5.0" Controller="AppController">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+	<apex:includeScript value="https://npmcdn.com/@reactivex/rxjs@5.0.0-beta.2/dist/global/Rx.umd.js"/>
+
+	<div class="container">
+	  	<h3>Quick Search</h3>
+
+	  	<div class="row">
+	  		<div class="col-md-6">
+  				<input id="field" type="text"></input>
+  				<h3 id="search-label"></h3>
+	  		</div>
+	  	</div>
+	  	<div class="row">
+	  	</div>
+	</div>
+
+  	<script>
+  		var fieldElement = document.getElementById('field');
+  		var labelElement = document.getElementById('search-label');
+
+  		var inputText = Rx.Observable.fromEvent(fieldElement, 'input')
+  							.map(ev => ev.target.value)
+
+  		inputText.subscribe(text => {
+  			labelElement.textContent = text;
+  		});
+
+  		var searchText = Rx.Observable.fromEvent(fieldElement, 'input')
+  							.map(ev => ev.target.value)
+  							.debounceTime(500);
+
+  		searchText.subscribe(text => {
+  			console.info('searching', text);
+  			var bar = NgSfAppController.GetAllUsersByFilter(text, function(result, event) {
+  				console.log(result);
+  			});
+  		});
+  	</script>
+</apex:page>
