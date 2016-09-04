@@ -1,6 +1,6 @@
 <apex:page docType="html-5.0" Controller="AppController">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-	<apex:includeScript value="https://npmcdn.com/@reactivex/rxjs@5.0.0-beta.2/dist/global/Rx.umd.js"/>
+	<apex:includeScript value="https://unpkg.com/@reactivex/rxjs@5.0.0-beta.2/dist/global/Rx.umd.js"/>
 
 	<div class="container">
 	  	<h3>Quick Search</h3>
